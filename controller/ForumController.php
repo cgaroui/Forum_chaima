@@ -38,8 +38,26 @@ class ForumController extends AbstractController implements ControllerInterface{
             "meta_description" => "Liste des topics par catégorie : ".$category,
             "data" => [
                 "category" => $category,
-                "topics" => $topics
+                "topics" => $topics,
+             
             ]
         ];
     }
+    // public function listSujetsByCategory($id) {
+
+    //     $topicManager = new TopicManager();
+    //     $categoryManager = new CategoryManager();
+    //     $category = $categoryManager->findOneById($id);
+    //     $topics = $topicManager->findTopicsByCategory($id);
+
+    //     return [
+    //         "view" => VIEW_DIR."forum/listTopics.php",
+    //         "meta_description" => "Liste des topics par catégorie : ".$category,
+    //         "data" => [
+    //             "category" => $category,
+    //             "topics" => $topics,
+    //             "title" => $topics->getTitle()
+    //         ]
+    //     ];
+    // }
 }
