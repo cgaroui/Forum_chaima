@@ -24,9 +24,13 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id_category` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table forum_chaima.category : ~3 rows (environ)
+INSERT INTO `category` (`id_category`, `name`) VALUES
+	(4, 'developpement web '),
+	(5, 'cuisine '),
+	(6, 'sport ');
 
 -- Listage de la structure de table forum_chaima. post
 CREATE TABLE IF NOT EXISTS `post` (
@@ -40,9 +44,12 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `topic_id1` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`) ON DELETE CASCADE,
   CONSTRAINT `user_id1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table forum_chaima.post : ~2 rows (environ)
+INSERT INTO `post` (`id_post`, `text`, `creationDate`, `user_id`, `topic_id`) VALUES
+	(1, 'blabla blablaalalalalallal', '2024-06-17 14:36:29', 4, 6),
+	(2, 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit ad ipsum, explicabo voluptatum earum a sequi accusamus rem, totam dolore, minus illo tenetur culpa quidem eaque ipsa quo? Impedit, mollitia?', '2024-06-17 14:38:47', 5, 6);
 
 -- Listage de la structure de table forum_chaima. topic
 CREATE TABLE IF NOT EXISTS `topic` (
@@ -57,18 +64,26 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `category_id` (`category_id`),
   CONSTRAINT `category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`) ON DELETE SET NULL,
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table forum_chaima.topic : ~3 rows (environ)
+INSERT INTO `topic` (`id_topic`, `title`, `closed`, `user_id`, `category_id`, `creationDate`) VALUES
+	(6, 'comment faire un fondant au chocolat ', b'0', 3, 5, '2024-06-17 14:34:34'),
+	(7, ' RGPD ', b'0', 5, 4, '2024-06-17 14:35:24'),
+	(8, 'exercices fitness', b'0', 3, 6, '2024-06-17 14:36:03');
 
 -- Listage de la structure de table forum_chaima. user
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int NOT NULL AUTO_INCREMENT,
   `nickName` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table forum_chaima.user : ~3 rows (environ)
+INSERT INTO `user` (`id_user`, `nickName`) VALUES
+	(3, 'chaima'),
+	(4, 'asma '),
+	(5, 'idriss');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
