@@ -14,15 +14,12 @@ class PostManager extends Manager{
         parent::connect();
     }
 
-
-
-
     // Pour récupérer tous les posts pour un topic spécifique (par son id)
     public function findPostsByTopic($topicId) {
         $sql = "SELECT * 
                 FROM {$this->tableName} p 
                 WHERE p.topic_id = :topic_id
-                ORDER BY p.creationDate DESC ";
+                ORDER BY p.creationDate ASC ";
                 
                 
 
