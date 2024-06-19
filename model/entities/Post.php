@@ -3,7 +3,7 @@ namespace Model\Entities;
 
 use App\Entity;
 
-final class User extends Entity{
+final class Post extends Entity{
 
     private $id;
     private $user;
@@ -11,8 +11,6 @@ final class User extends Entity{
     private $creationDate;
     private $text;
    
-
-
     public function __construct($data){         
         $this->hydrate($data);        
     }
@@ -92,7 +90,7 @@ final class User extends Entity{
      */ 
     public function setCreationDate($creationDate)
     {
-        $this->creationDate = $creationDate;
+        $this->creationDate = new \DateTime($creationDate);
 
         return $this;
     }

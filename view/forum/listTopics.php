@@ -7,5 +7,5 @@
 
 <?php
 foreach($topics as $topic ){ ?>
-    <p><a href="#"><?= $topic->getTitle() ?></a> par <?= $topic->getUser() ?> le <?= $topic->getCreationDate() ?></p>
+    <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a> par <?= $topic->getUser() ?> le <?= $topic->getCreationDate()->format("d/m/y  H:i") ?></p>
 <?php }

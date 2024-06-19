@@ -3,11 +3,15 @@
     $posts = $result["data"]['posts'];
 ?>
 
-<h1>Liste des topics</h1> 
- <a href="index.php?ctrl=forum&action=findPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a>
+<h1>Liste des posts de "<?= $topic->getTitle() ?>"</h1> 
 
-<?php foreach($posts as $post) { ?>
-    <p>
-        par <?= $post->getUser() ?> le <?= $post->getCreationDate() ?>
+<?php if (empty($posts)) { ?>
+    <p>Aucun post à afficher pour ce sujet.</p>
+<?php } else { ?>
+    <?php foreach($posts as $post) { ?>
+        <p>
+    <br><?=$post->getText()?><br> par <?="\n" .$post->getUser() ?><br> le <?= $post->getCreationDate()->format("d/m/Y H:i") ?>
     </p>
-<?php } ?>
+    
+<?php } 
+} ?>

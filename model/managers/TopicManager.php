@@ -20,7 +20,7 @@ class TopicManager extends Manager{
         $sql = "SELECT *
                 FROM ".$this->tableName." t 
                 WHERE t.category_id = :id
-                ORDER BY t.creationDate asc"; // Correction ici : fermeture de la chaîne SQL
+                ORDER BY t.creationDate desc"; // Correction ici : fermeture de la chaîne SQL
 
         // La requête renvoie plusieurs enregistrements --> getMultipleResults
         return $this->getMultipleResults(
