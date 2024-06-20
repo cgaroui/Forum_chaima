@@ -29,4 +29,8 @@ class PostManager extends Manager{
         );
     }
    
+    public function addPostbyTopic(){
+
+    }
+
 }
