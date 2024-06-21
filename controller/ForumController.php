@@ -72,7 +72,7 @@ class ForumController extends AbstractController implements ControllerInterface{
             // faille XSS
             $post = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            // on utilise la methode add qui est predefini dans le framework pour éviter de mettre select etc.. donc un tableau : "nom dans la bdd" => $nom de la var dans le controleur 
+            // on utilise la methode add qui est predefini dans le Framework pour éviter de mettre select etc.. donc un tableau : "nom dans la bdd" => $nom de la var dans le controleur 
             if($post) {
                 $postManager->add([
                     "text" => $post,
@@ -84,6 +84,37 @@ class ForumController extends AbstractController implements ControllerInterface{
             }
         }
 
+    }
+
+    //ici id = id de la categorie dans laquelle on ajoute le topic 
+    public function addTopic($id){
+
+        $topicManager = new TopicManager();
+        $postManager = new PostManager();
+        
+        // si je soumet le formulaire
+        if(isset($_POST["submit"])) {
+
+            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $post = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if($title && $post) {
+                $idtopic = $topicManager->add([
+                    "title" => $title,
+                    "category_id" => $id,
+                    "user_id"=> 5
+                ]);
+
+            //pour ajouter egalement le 1 er message 
+                $postManager->add([
+                    "text" => $post,
+                    "user_id" => 5,
+                    "topic_id" => $idtopic
+                ]);
+  
+                header("Location: index.php?ctrl=forum&action=listTopicsByCategory&id=$id");
+            }
+        }
     }
 
     
