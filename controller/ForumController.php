@@ -40,7 +40,6 @@ class ForumController extends AbstractController implements ControllerInterface{
             "data" => [
                 "category" => $category,
                 "topics" => $topics,
-             
             ]
         ];
     }
@@ -60,6 +59,31 @@ class ForumController extends AbstractController implements ControllerInterface{
                 "posts" => $posts
             ]
         ];
+    }
+
+    // $id = id du topic dans lequel on ajoute le post
+    public function addPost($id) {
+
+        $postManager = new PostManager();
+
+        // si je soumet le formulaire
+        if(isset($_POST["submit"])) {
+            
+            // faille XSS
+            $post = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            // on utilise la methode add qui est predefini dans le framework pour éviter de mettre select etc.. donc un tableau : "nom dans la bdd" => $nom de la var dans le controleur 
+            if($post) {
+                $postManager->add([
+                    "text" => $post,
+                    "user_id" => 4,
+                    "topic_id" => $id
+                ]);
+
+                header("Location: index.php?ctrl=forum&action=listPostsByTopic&id=$id");// redirection vers la meme page pour voir le post s'ajouter 
+            }
+        }
+
     }
 
     

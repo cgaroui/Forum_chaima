@@ -28,9 +28,6 @@ class PostManager extends Manager{
             $this->className
         );
     }
-   
-    public function addPostbyTopic(){
 
-    }
 
 }
