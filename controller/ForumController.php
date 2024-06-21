@@ -117,6 +117,38 @@ class ForumController extends AbstractController implements ControllerInterface{
         }
     }
 
+    public function closed(){
+
+        $topicManager = new TopicManager();
+        $userId = 3;
+   
+ 
+    
+        // Récupére le topic
+        $topic = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+    
+        // Vérifie si l'utilisateur est l'auteur du topic
+         if($topic->getUser()->getId() == $userId){
+            $topic->getclosed()
+
+         }
+            // Changer l'état du topic (ouvert/fermé)
+            // Supposons que getIsClosed() renvoie 0 ou 1
+            // Inverser l'état
+    
+            // Mettre à jour l'état du topic
+          
+    
+            // Redirection vers la page des topics de la catégorie du topic
+        
+      
+            // Si l'utilisateur n'est pas l'auteur, on peut rediriger vers une page d'erreur ou afficher un message
+      
+      
+     }
+    
+    
     
    
 }
