@@ -6,9 +6,19 @@
 <h1>Liste des topics</h1>
 
 <?php
-foreach($topics as $topic ){ ?>
-    <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a> par <?= $topic->getUser() ?> le <?= $topic->getCreationDate()->format("d/m/y  H:i") ?></p>
-<?php }?>
+$idAuteur = 3;
+
+foreach($topics as $topic ){ 
+    
+    if($topic->getUser()->getId() == $idAuteur) { ?>
+        <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a> par <?= $topic->getUser() ?> le <?= $topic->getCreationDate()->format("d/m/y  H:i") ?><a href="http://">lien closed</a>
+            </p> 
+            <?php $topic->setClosed(1); 
+    }else { ?>
+
+        <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a> par <?= $topic->getUser() ?> le <?= $topic->getCreationDate()->format("d/m/y  H:i") ?>
+        <?php }
+}?>
 
 <form action="index.php?ctrl=forum&action=addTopic&id=<?=$category->getId()?>" method="POST">
     <label for="title">Titre Topic: </label>
