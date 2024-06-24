@@ -8,17 +8,30 @@
 <?php
 $idAuteur = 3;
 
-foreach($topics as $topic ){ 
-    
-    if($topic->getUser()->getId() == $idAuteur) { ?>
-        <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a> par <?= $topic->getUser() ?> le <?= $topic->getCreationDate()->format("d/m/y  H:i") ?><a href="http://">lien closed</a>
-            </p> 
-            <?php $topic->setClosed(1); 
-    }else { ?>
 
-        <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a> par <?= $topic->getUser() ?> le <?= $topic->getCreationDate()->format("d/m/y  H:i") ?>
-        <?php }
-}?>
+
+
+foreach($topics as $topic ){ 
+
+?> 
+
+<p>
+    <a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a>
+     par <?= $topic->getUser() ?>
+      le <?= $topic->getCreationDate()->format("d/m/y  H:i") ?>
+     
+    <?php
+        if($topic->getUser()->getId() == $idAuteur) { ?>
+            <?php if($topic->getClosed() == 0) { ?>
+                <a href="index.php?ctrl=forum&action=closeTopic&id=<?= $topic->getId() ?>">Close</a>
+                <?php } else { ?>
+                <a href="index.php?ctrl=forum&action=openTopic&id=<?= $topic->getId() ?>">Open</a>
+            <?php }
+        }
+    ?>
+</p>
+
+<?php } ?>
 
 <form action="index.php?ctrl=forum&action=addTopic&id=<?=$category->getId()?>" method="POST">
     <label for="title">Titre Topic: </label>

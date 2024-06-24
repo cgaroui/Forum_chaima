@@ -2,6 +2,7 @@
 namespace Controller;
 
 use App\Session;
+use App\DAO;
 use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\CategoryManager;
@@ -117,38 +118,61 @@ class ForumController extends AbstractController implements ControllerInterface{
         }
     }
 
-    public function closed(){
-
+    public function closeTopic($id) {
         $topicManager = new TopicManager();
         $userId = 3;
-   
- 
     
-        // Récupére le topic
-        $topic = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-    
-        // Vérifie si l'utilisateur est l'auteur du topic
-         if($topic->getUser()->getId() == $userId){
-            $topic->getclosed()
-
-         }
-            // Changer l'état du topic (ouvert/fermé)
-            // Supposons que getIsClosed() renvoie 0 ou 1
-            // Inverser l'état
-    
-            // Mettre à jour l'état du topic
-          
-    
-            // Redirection vers la page des topics de la catégorie du topic
+        // Récupérer le topic via l'ID
+        $topic = $topicManager->findOneById($id);
         
-      
-            // Si l'utilisateur n'est pas l'auteur, on peut rediriger vers une page d'erreur ou afficher un message
-      
-      
-     }
+        if ($topic) {
+            $idCat = $topic->getCategory()->getId();
     
+            // Vérifier si l'utilisateur est l'auteur du topic
+            if ($topic->getUser()->getId() == $userId ) {
+                // Inverser l'état du topic (ouvert/fermé)
+                $nvEtat = $topic->getclosed(); // Inverse l'état actuel
+                
+                // Mettre à jour l'état du topic dans la BDD
+                $topicManager->closeTopic($id);
     
-    
-   
-}
+                // Redirection vers la page du topic
+                header("Location: index.php?ctrl=forum&action=listTopicsByCategory&id=$idCat");
+                exit ;
+            } else {
+                // afficher un message d'erreur
+                echo "Vous n'êtes pas autorisé à modifier ce topic" ;
+            }
+        } else {
+            // afficher un message si le topic n'existe pas
+            echo "Le topic spécifié n'existe pas";
+        }
+    }
+
+    public function openTopic($id){
+        $topicManager = new TopicManager();
+        $userId = 3;
+
+        $topic = $topicManager->findOneById($id);
+
+        if($topic) {
+            $idCat = $topic->getCategory()->getId();
+
+            if($topic->getUser()->getId() == $userId ){
+                $nvEtat = !$topic->getclosed();
+                $topicManager->openTopic($id);
+              
+                // Redirection vers la page du topic
+                header("Location: index.php?ctrl=forum&action=listTopicsByCategory&id=$idCat");
+                exit ;
+            } else {
+                // afficher un message d'erreur
+                echo "Vous n'êtes pas autorisé à modifier ce topic" ;
+            }
+        } else {
+            // afficher un message si le topic n'existe pas
+            echo "Le topic spécifié n'existe pas";
+        }
+    }
+ }
+ 
