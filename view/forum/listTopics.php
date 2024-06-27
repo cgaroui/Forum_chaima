@@ -6,12 +6,22 @@
 <h1>Liste des topics</h1>
 
 <?php
-$idAuteur = 3;
+// $_SESSION[""]
+
+// $userManager = new UserManager();
+// $_SESSION["user"]=$user;
+// $userId = $user->getId();
+// var_dump($user);die;
+
+// $idAuteur = 
 
 
 
 
 foreach($topics as $topic ){ 
+
+// $idAuteur = $topic->getUser()->getNickName();
+$userId = App\Session::getUser()->getId();
 
 ?> 
 
@@ -21,12 +31,15 @@ foreach($topics as $topic ){
       le <?= $topic->getCreationDate()->format("d/m/y  H:i") ?>
      
     <?php
-        if($topic->getUser()->getId() == $idAuteur) { ?>
+    //je verifie si idauteur == idUser pour accorder les droit sur topic ou role ==  admin
+        if($topic->getUser()->getId() == $userId  ) { ?>
             <?php if($topic->getClosed() == 0) { ?>
                 <a href="index.php?ctrl=forum&action=closeTopic&id=<?= $topic->getId() ?>">Close</a>
                 <?php } else { ?>
                 <a href="index.php?ctrl=forum&action=openTopic&id=<?= $topic->getId() ?>">Open</a>
             <?php }
+        }else{
+
         }
     ?>
 </p>

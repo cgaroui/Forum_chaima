@@ -9,6 +9,7 @@ use Model\Managers\CategoryManager;
 use Model\Managers\TopicManager;
 use Model\Managers\PostManager;
 
+
 class ForumController extends AbstractController implements ControllerInterface{
 
     public function index() {
@@ -72,12 +73,12 @@ class ForumController extends AbstractController implements ControllerInterface{
             
             // faille XSS
             $post = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
+            
             // on utilise la methode add qui est predefini dans le Framework pour éviter de mettre select etc.. donc un tableau : "nom dans la bdd" => $nom de la var dans le controleur 
             if($post) {
                 $postManager->add([
                     "text" => $post,
-                    "user_id" => 4,
+                    "user_id" => Session::getUser()->getId(),
                     "topic_id" => $id
                 ]);
 
@@ -103,13 +104,13 @@ class ForumController extends AbstractController implements ControllerInterface{
                 $idtopic = $topicManager->add([
                     "title" => $title,
                     "category_id" => $id,
-                    "user_id"=> 5
+                    "user_id"=> Session::getUser()->getId()
                 ]);
 
             //pour ajouter egalement le 1 er message 
                 $postManager->add([
                     "text" => $post,
-                    "user_id" => 5,
+                    "user_id" => Session::getUser()->getId(),
                     "topic_id" => $idtopic
                 ]);
   
@@ -120,16 +121,15 @@ class ForumController extends AbstractController implements ControllerInterface{
 
     public function closeTopic($id) {
         $topicManager = new TopicManager();
-        $userId = 3;
-    
+     
         // Récupérer le topic via l'ID
         $topic = $topicManager->findOneById($id);
         
         if ($topic) {
             $idCat = $topic->getCategory()->getId();
-    
+            $userId = Session::getUser()->getId();
             // Vérifier si l'utilisateur est l'auteur du topic
-            if ($topic->getUser()->getId() == $userId ) {
+            if ($topic->getUser()->getId() === $userId ) {
                 // Inverser l'état du topic (ouvert/fermé)
                 $nvEtat = $topic->getclosed(); // Inverse l'état actuel
                 
@@ -151,7 +151,7 @@ class ForumController extends AbstractController implements ControllerInterface{
 
     public function openTopic($id){
         $topicManager = new TopicManager();
-        $userId = 3;
+        $userId = Session::getUser()->getId();
 
         $topic = $topicManager->findOneById($id);
 

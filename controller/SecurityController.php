@@ -92,7 +92,7 @@ class SecurityController extends AbstractController{
                         $_SESSION['user'] = $user;
                         echo "bienvenu ".$user->getNickName();
 
-                        header("Location: index.php?ctrl=forum&action=index"); exit;
+                        header("Location: index.php?ctrl=home&action=home"); exit;
                    }else{
                         echo "identifiant ou mot de passe incorrect !";
                    }
