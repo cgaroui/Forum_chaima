@@ -10,8 +10,7 @@ class SecurityController extends AbstractController{
     
     public function register() {
 
-        
-        $userManager = new UserManager;
+        $userManager = new UserManager();
         //si je soumet le formulaire 
         if(isset($_POST["submit"])) {
             // Filtrer la saisie des champs 
@@ -19,24 +18,29 @@ class SecurityController extends AbstractController{
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $pass1 = filter_input(INPUT_POST, 'pass1', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $pass2 = filter_input(INPUT_POST, 'pass2', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
+            var_dump("oak");die;
             if ($nickname && $email && $pass1 && $pass2) {
+
                 // Vérifier si l'utilisateur existe déjà
                 $user = $userManager->getByEmail($email);
                 
                 if ($user) {
-                    header('Location: login.php');
-                    exit();
+                    header('Location: login.php');exit(); //redirection vers ma page de connexion(login)
+                    
                 } else {
                     // Vérifier si les mots de passe correspondent et sont suffisamment longs
                     if ($pass1 === $pass2 && strlen($pass1) >= 5) {
-                        $user = new user($nickname, $email, $pass1);
-                        if ($userManager->nvUser($user)) {
-                            header('Location: login.php');
-                            exit();
-                        } else {
-                            echo "Erreur lors de l'inscription";
-                        }
+
+                        $mdpHache = password_hash($pass1, PASSWORD_DEFAULT);
+
+                        $user = $userManager->add( [
+                            "nickname" => $nickname,
+                            "email"=> $email,
+                            "password" => $mdpHache 
+                        ]);
+
+                        header("Location: register.php");
+                           
                     } else {
                         echo "Les mots de passe ne sont pas identiques ou sont trop courts";
                     }
@@ -46,8 +50,17 @@ class SecurityController extends AbstractController{
             }
         } else {
             // Affichage du formulaire d'inscription
-            header("Location: view/forum/register.php");
+            header("Location: register.php");
         }
+
+        return [
+            "view" => VIEW_DIR . "forum/register.php",
+            "data" => [         
+                "nickname" => $nickname,
+                "email"=> $email,
+                "password" => $mdpHache 
+            ]
+        ];
     }
     public function login () {}
     public function logout () {}

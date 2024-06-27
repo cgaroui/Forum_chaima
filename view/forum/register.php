@@ -6,7 +6,7 @@
     <title>Formulaire d'inscription </title>
 </head>
 <body>
-    <form action="index.php?ction=register" method="POST">
+    <form action="index.php?ctrl=security&action=register" method="POST">
         <label for="nikname">nom : </label>
         <input type="text" id="nickname" name="nickname"><br>
         

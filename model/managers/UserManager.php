@@ -14,19 +14,24 @@ class UserManager extends Manager{
         parent::connect ();
     }
 
+    // Méthode pour créer un nouvel utilisateur
     public function nvUser($nickname, $email, $password) {
         $sql = "INSERT INTO {$this->tableName} (nickname, email, password) 
                 VALUES (:nickname, :email, :password)";
        
+        // Hash du mot de passe avant l'insertion
+        $mdpHache = password_hash($password, PASSWORD_DEFAULT);
+
         return DAO::insert($sql, [
             'nickname' => $nickname,
             'email' => $email,
-            'password' => password_hash($password, PASSWORD_DEFAULT)
+            'password' => $mdpHache
         ]);
     }
 
     public function getByEmail($email) {
         $sql = "SELECT * FROM {$this->tableName} WHERE email = :email";
+
         return $this->getOneOrNullResult(
             DAO::select($sql, ['email' => $email], false),
             $this->className
