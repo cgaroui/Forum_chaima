@@ -12,55 +12,60 @@ class SecurityController extends AbstractController{
 
         $userManager = new UserManager();
         //si je soumet le formulaire 
-        if(isset($_POST["submit"])) {
-            // Filtrer la saisie des champs 
-            $nickname = filter_input(INPUT_POST, 'nickname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-            $pass1 = filter_input(INPUT_POST, 'pass1', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $pass2 = filter_input(INPUT_POST, 'pass2', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            var_dump("oak");die;
-            if ($nickname && $email && $pass1 && $pass2) {
+        if(isset($_POST["submit"])) {  
 
-                // Vérifier si l'utilisateur existe déjà
+            // Filtrer la saisie des champs 
+           $nickname = filter_input(INPUT_POST, 'nickname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+           $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+           $pass1 = filter_input(INPUT_POST, 'password1', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+           $pass2 = filter_input(INPUT_POST, 'password2', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+           if ($nickname && $email && $pass1 && $pass2) {
                 $user = $userManager->getByEmail($email);
-                
-                if ($user) {
-                    header('Location: login.php');exit(); //redirection vers ma page de connexion(login)
-                    
-                } else {
+
+               // Vérifier si l'utilisateur existe déjà
+            if ($user) {
+
+                header('Location: login.php');exit(); //redirection vers ma page de connexion(login)
+     
+            }else {
                     // Vérifier si les mots de passe correspondent et sont suffisamment longs
                     if ($pass1 === $pass2 && strlen($pass1) >= 5) {
 
                         $mdpHache = password_hash($pass1, PASSWORD_DEFAULT);
 
-                        $user = $userManager->add( [
+                         $userManager->add([
                             "nickname" => $nickname,
                             "email"=> $email,
-                            "password" => $mdpHache 
+                            "password" => $mdpHache,
+                            "role" => "admin"
                         ]);
 
-                        header("Location: register.php");
+                        header("Location: index.php?ctrl=security&action=register");
                            
                     } else {
                         echo "Les mots de passe ne sont pas identiques ou sont trop courts";
                     }
-                }
-            } else {
+                } } else {
+                
                 echo "Problème de saisie dans les champs du formulaire.";
             }
+             
         } else {
-            // Affichage du formulaire d'inscription
-            header("Location: register.php");
+            
+            return [
+                "view" => VIEW_DIR . "forum/register.php",
+                "meta_description" => "Register",
+                // "data" => [         
+                //     "nickname" => $nickname,
+                //     "email"=> $email,
+                //     "password" => $mdpHache 
+                // ]
+            ];
+            // header("Location: index.php?ctrl=security&action=register");
         }
 
-        return [
-            "view" => VIEW_DIR . "forum/register.php",
-            "data" => [         
-                "nickname" => $nickname,
-                "email"=> $email,
-                "password" => $mdpHache 
-            ]
-        ];
+        
     }
     public function login () {}
     public function logout () {}
