@@ -1,6 +1,8 @@
 <?php
 namespace Controller;
 
+// session_start();
+
 use App\AbstractController;
 use Model\Managers\UserManager;
 
@@ -26,7 +28,7 @@ class SecurityController extends AbstractController{
                // Vérifier si l'utilisateur existe déjà
             if ($user) {
 
-                header('Location: login.php');exit(); //redirection vers ma page de connexion(login)
+                header('Location: index.php?ctrl=security&action=login');exit(); //redirection vers ma page de connexion(login)
      
             }else {
                     // Vérifier si les mots de passe correspondent et sont suffisamment longs
@@ -38,7 +40,7 @@ class SecurityController extends AbstractController{
                             "nickname" => $nickname,
                             "email"=> $email,
                             "password" => $mdpHache,
-                            "role" => "admin"
+                            "role" => "user"
                         ]);
 
                         header("Location: index.php?ctrl=security&action=register");
@@ -67,6 +69,79 @@ class SecurityController extends AbstractController{
 
         
     }
-    public function login () {}
-    public function logout () {}
+    public function login () {
+
+        $userManager = new UserManager();
+
+        if(isset($_POST["submit"])){
+          
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+            $password = filter_input(INPUT_POST,'password', FILTER_SANITIZE_SPECIAL_CHARS);
+
+            //je vérifie si mes données ont bien été renseigné 
+            if( $email && $password){ 
+                //verifier si l'utilisateur existe deja avec son email
+                $user = $userManager->getByEmail($email);
+                
+                if($user){
+                    //on verifie si le mdp entréé est le mm que celui en bdd
+                    $hash = $user->getPassword();
+                    //$hash représente le mot de passe haché stocké en base de données, et $password est le mot de passe saisi dans le formulaire. password_verify vérifie si les deux mots de passe correspondent
+                    if(password_verify($password, $hash)){
+                        // var_dump("okh");die;
+                        $_SESSION['user'] = $user;
+                        echo "bienvenu ".$user->getNickName();
+
+                        header("Location: index.php?ctrl=forum&action=index"); exit;
+                   }else{
+                        echo "identifiant ou mot de passe incorrect !";
+                   }
+
+                }else{
+                    echo "utilisateur inconu";
+                    header("Location: index.php?ctrl=security&action=register");exit();
+                }
+            }else{
+                echo " une erreur s'est produite lors de la saisie ";
+            }
+        }else {
+            return [
+                "view" => VIEW_DIR . "forum/login.php",
+                "meta_description" => "login",];
+
+        }
+
+    }
+    public function logout () {
+        
+        unset($_SESSION["user"]);
+        header("Location: index.php?ctrl=security&action=login");exit();
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
