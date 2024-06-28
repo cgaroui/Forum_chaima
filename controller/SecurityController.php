@@ -5,6 +5,7 @@ namespace Controller;
 
 use App\AbstractController;
 use Model\Managers\UserManager;
+use App\Session;
 
 class SecurityController extends AbstractController{
     // contiendra les méthodes liées à l'authentification : register, login et logout
@@ -117,6 +118,48 @@ class SecurityController extends AbstractController{
         unset($_SESSION["user"]);
         header("Location: index.php?ctrl=security&action=login");exit();
     }
+
+
+    // public function profile ($id){
+    //     $userManager = new UserManager();
+    //     //afficher informations personnelles 
+    //     //afficher ses 5 dernier topics du plus order by desc
+    //     $user = Session::getUser();
+    //     var_dump($user);
+    //     $pseudo = $user->getNickname();
+    //     $email = $user->getEmail(); 
+    //     $inscription = $user->getCreationDate();
+    
+    //     header("Location: index.php?ctrl=security&action=profile=$id");
+
+    // }
+    public function profile() {
+    
+    
+        $userManager = new UserManager();
+    
+        // Récupérer les informations de l'utilisateur connecté
+        $user = Session::getUser();
+        $userId = $user->getId();
+  
+            
+            
+   
+        
+        // Afficher les informations personnelles de l'utilisateur
+        $pseudo = $user->getNickname();
+        $email = $user->getEmail();
+        $inscription = $user->getCreationDate(); 
+    
+        // Récupérer les 5 derniers topics de l'utilisateur, triés par date de création décroissante
+    //     $topics[] = $userManager->getLastFiveTopics($userId);
+    // var_dump($topics);die;
+        // Inclure la vue du profil utilisateur
+      
+        header("Location: index.php?ctrl=security&action=profile");
+    }
+    
+
 }
 
 
