@@ -8,14 +8,17 @@
 <?php if (empty($posts)) { ?>
     <p>Aucun post à afficher pour ce sujet.</p>
 <?php } else { ?>
-    <?php foreach($posts as $post) { ?>
+    <?php 
+    foreach($posts as $post) { 
+        $userId = App\Session::getUser()->getId();
+        $role = App\Session::getUser()->getRole();?>
         <p>
-    <br><?=$post->getText()?><br> par <?="\n" .$post->getUser() ?><br> le <?= $post->getCreationDate()->format("d/m/Y H:i") ?>
-    </p>
- 
-    <a href="index.php?ctrl=forum&action=supprimerPost&id=<?= $post->getId()?>">supprimer</a>
-    
-<?php } }
+    <?=$post->getText()?><br> par <?="\n" .$post->getUser() ?><br> le <?= $post->getCreationDate()->format("d/m/Y H:i") 
+    ?></p><?php
+        if( $role == "admin" || $post->getUser()->getId() == $userId) { ?>
+            <a href="index.php?ctrl=forum&action=supprimerPost&id=<?= $post->getId()?>">supprimer</a><br>
+        
+    <?php } }   }
 
 if($topic->getClosed() == 0 ){?>
 

@@ -94,13 +94,17 @@ class ForumController extends AbstractController implements ControllerInterface{
 
         $post = $postManager->findOneById($id);  
         $topicId = $post->getTopic()->getId();
-
+        $userId = Session::getUser()->getId();
+        $role = Session::getUser()->getRole();
         // var_dump($topicId);die;
-         
+        if ($post->getUser()->getId() === $userId || $role == "admin"){
             $postManager->delete($id);
     
             header("Location: index.php?ctrl=forum&action=listPostsByTopic&id=$topicId");
-           
+        }else{
+            
+            header("Location: index.php?ctrl=forum&action=listPostsByTopic&id=$topicId");
+        }
         
     }
     
