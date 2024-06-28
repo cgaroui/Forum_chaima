@@ -6,14 +6,7 @@
 <h1>Liste des topics</h1>
 
 <?php
-// $_SESSION[""]
 
-// $userManager = new UserManager();
-// $_SESSION["user"]=$user;
-// $userId = $user->getId();
-// var_dump($user);die;
-
-// $idAuteur = 
 
 
 

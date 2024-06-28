@@ -136,17 +136,18 @@ class ForumController extends AbstractController implements ControllerInterface{
         }
     }
 
+
     public function closeTopic($id) {
         $topicManager = new TopicManager();
-     
         // Récupérer le topic via l'ID
         $topic = $topicManager->findOneById($id);
         
         if ($topic) {
             $idCat = $topic->getCategory()->getId();
             $userId = Session::getUser()->getId();
+            $role = Session::getUser()->getRole();
             // Vérifier si l'utilisateur est l'auteur du topic
-            if ($topic->getUser()->getId() === $userId ) {
+            if ($topic->getUser()->getId() === $userId || $role == "admin") {
                 // Inverser l'état du topic (ouvert/fermé)
                 $nvEtat = $topic->getclosed(); // Inverse l'état actuel
                 
@@ -170,12 +171,14 @@ class ForumController extends AbstractController implements ControllerInterface{
         $topicManager = new TopicManager();
         $userId = Session::getUser()->getId();
 
+        $role = Session::getUser()->getRole();  
+
         $topic = $topicManager->findOneById($id);
 
         if($topic) {
             $idCat = $topic->getCategory()->getId();
 
-            if($topic->getUser()->getId() == $userId ){
+            if($topic->getUser()->getId() == $userId || $role == "admin"){
                 $nvEtat = !$topic->getclosed();
                 $topicManager->openTopic($id);
               
