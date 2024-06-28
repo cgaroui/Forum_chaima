@@ -22,7 +22,8 @@ foreach($topics as $topic ){
 
 // $idAuteur = $topic->getUser()->getNickName();
 $userId = App\Session::getUser()->getId();
-
+$role = App\Session::getUser()->getRole();
+// var_dump($role);die;
 ?> 
 
 <p>
@@ -31,15 +32,15 @@ $userId = App\Session::getUser()->getId();
       le <?= $topic->getCreationDate()->format("d/m/y  H:i") ?>
      
     <?php
-    //je verifie si idauteur == idUser pour accorder les droit sur topic ou role ==  admin
-        if($topic->getUser()->getId() == $userId  ) { ?>
+    //je verifie si idauteur == idUser pour accorder les droit sur topic ou role s'il est admin
+        if($topic->getUser()->getId() == $userId || $role == "admin" ) { ?>
             <?php if($topic->getClosed() == 0) { ?>
                 <a href="index.php?ctrl=forum&action=closeTopic&id=<?= $topic->getId() ?>">Close</a>
                 <?php } else { ?>
                 <a href="index.php?ctrl=forum&action=openTopic&id=<?= $topic->getId() ?>">Open</a>
             <?php }
         }else{
-
+            
         }
     ?>
 </p>
@@ -54,4 +55,5 @@ $userId = App\Session::getUser()->getId();
     <textarea id="textarea" name="post" rows="4" cols="50" placeholder="entrer le 1er message" required></textarea>
   <br>
     <input type="submit" name="submit" value="ajouter">
+    
 </form>

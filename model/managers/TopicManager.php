@@ -35,7 +35,7 @@ class TopicManager extends Manager{
                 WHERE id_topic = :id";
 
         return $this-> getOneOrNullResult(  
-            DAO::select($sql, ['id' => $id]), 
+            DAO::select($sql, ['id' => $id]),
             $this->className);
     }
 
@@ -49,4 +49,5 @@ class TopicManager extends Manager{
             DAO::select($sql, ['id' => $id]), 
             $this->className);
     }
+
 }

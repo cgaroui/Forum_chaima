@@ -119,6 +119,17 @@ class ForumController extends AbstractController implements ControllerInterface{
         }
     }
 
+    public function supprimerTopic($id){
+        $topicManager = new TopicManager();
+        $postManager = new PostManager();
+
+        if(isset($_POST["btnSupprimer"])){
+        $topicManager->delete([$id => ":id"]);
+        
+        }
+        header("Location: index.php?ctrl=forum&action=listTopicsByCategory&id=$id");
+    }
+
     public function closeTopic($id) {
         $topicManager = new TopicManager();
      
