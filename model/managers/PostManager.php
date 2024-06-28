@@ -27,7 +27,13 @@ class PostManager extends Manager{
             DAO::select($sql, ['topic_id' => $topicId]),
             $this->className
         );
+
     }
 
 
+
+    
 }
+
+
+

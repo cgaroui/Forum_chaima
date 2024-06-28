@@ -88,6 +88,23 @@ class ForumController extends AbstractController implements ControllerInterface{
 
     }
 
+    
+    public function supprimerPost($id) {
+        $postManager = new PostManager();
+
+        $post = $postManager->findOneById($id);  
+        $topicId = $post->getTopic()->getId();
+
+        // var_dump($topicId);die;
+         
+            $postManager->delete($id);
+    
+            header("Location: index.php?ctrl=forum&action=listPostsByTopic&id=$topicId");
+           
+        
+    }
+    
+
     //ici id = id de la categorie dans laquelle on ajoute le topic 
     public function addTopic($id){
 
@@ -117,17 +134,6 @@ class ForumController extends AbstractController implements ControllerInterface{
                 header("Location: index.php?ctrl=forum&action=listTopicsByCategory&id=$id");
             }
         }
-    }
-
-    public function supprimerTopic($id){
-        $topicManager = new TopicManager();
-        $postManager = new PostManager();
-
-        if(isset($_POST["btnSupprimer"])){
-        $topicManager->delete([$id => ":id"]);
-        
-        }
-        header("Location: index.php?ctrl=forum&action=listTopicsByCategory&id=$id");
     }
 
     public function closeTopic($id) {
