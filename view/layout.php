@@ -11,7 +11,7 @@
         <title>FORUM</title>
     </head>
     <body>
-        <div id="wrapper"> 
+        <!-- <div id="wrapper">  -->
             <div id="mainpage">
                 <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
                 <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
@@ -49,7 +49,8 @@
             <footer>
                 <p>&copy; <?= date_create("now")->format("Y") ?> - <a href="#">Règlement du forum</a> - <a href="#">Mentions légales</a></p>
             </footer>
-        </div>
+        <!-- </div> -->
+
         <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

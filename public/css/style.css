@@ -1,16 +1,46 @@
+/*pour réinitialiser les marges par défaut */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
-h1 h2 {
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#mainpage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color:#e7c6ff
+}
+
+
+
+footer { 
+
+    background-color:  #c8b6ff; 
+    text-align:center;
+    font-size: small;
+    height: 170px;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;     /* Centre verticalement */
+    height: 170px;           /* Hauteur fixe pour le footer */
+  
+}
+
+h1 {
     color: rgb(0, 122, 156);
 }
 
 .nav-bar {
-    background-color: rgb(194, 151, 194); 
-   
+    background-color: #c8b6ff;
+   padding-bottom: 10px;
 }
 
 #nav-right {
@@ -20,23 +50,60 @@ h1 h2 {
 }
 
 #nav-right a{
-    
     margin-right: 1rem;
 }
 
-#mainpage{
-    background-color:rgb(235, 193, 235);  ;
-}
 
-footer{
-    background-color:  rgb(194, 151, 194); 
+.btns-accueil{
+    display: flex;
+    margin: 2px 0px 20px 70px;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .btn-accueil{
-    padding:  0px 20px;
+    /* padding:  0px 10px; */
+    margin: 5px;
+    padding:3px;
+    width: 100px;
+    height: 15px;
+    background-color:rgb(0, 122, 156);
+    border-radius: 10px;
+    font-size: 10px; 
+    text-align: center;
+    color: #e7c6ff;
+}
+    
+.home{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-color:#e7c6ff  
+}
+.text-acceuil{
+    margin: 10px;
+    padding: 5px 10px;
+}
 
-    width: 200px;
-    height: 50px;
-    background-color: blue;
-    border-radius: 2%;
+#categories{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.categorie{
+    margin: 50px;
+    padding:30px;
+    width: 150px;
+    height: 100px;
+    background-color: #c8b6ff;
+    border-radius: 5px;
+}
+
+.categorie a{
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;  
 }
