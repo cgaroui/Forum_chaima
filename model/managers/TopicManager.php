@@ -50,4 +50,18 @@ class TopicManager extends Manager{
             $this->className);
     }
 
+     // Méthode pour récupérer les 5 derniers topics d'un utilisateur
+     public function getLastFiveTopics($userId) {
+        $sql = "SELECT * 
+                FROM ".$this->tableName." 
+                WHERE user_id = :user_id 
+                ORDER BY creationDate DESC LIMIT 5";
+
+        // return DAO::select($sql, ['user_id' => $userId]);
+         // Utilisation de getMultipleResults pour transformer les résultats en objets Topic
+         return $this->getMultipleResults(
+            DAO::select($sql, ['user_id' => $userId]), 
+            $this->className
+        );    }
+
 }

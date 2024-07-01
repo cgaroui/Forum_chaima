@@ -112,7 +112,7 @@ final class User extends Entity{
      */ 
     public function setCreationDate($creationDate)
     {
-        $this->creationDate = $creationDate;
+        $this->creationDate = new \DateTime($creationDate);
         
         return $this;
     }

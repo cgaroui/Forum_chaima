@@ -38,10 +38,4 @@ class UserManager extends Manager{
         );
     }
 
-    // Méthode pour récupérer les 5 derniers topics d'un utilisateur
-    public function getLastFiveTopics($userId) {
-        $sql = "SELECT * FROM topics WHERE user_id = :user_id ORDER BY creation_date DESC LIMIT 5";
-
-        return DAO::select($sql, ['user_id' => $userId]);
-    }
 }

@@ -5,6 +5,7 @@ namespace Controller;
 
 use App\AbstractController;
 use Model\Managers\UserManager;
+use Model\Managers\TopicManager;
 use App\Session;
 
 class SecurityController extends AbstractController{
@@ -120,43 +121,36 @@ class SecurityController extends AbstractController{
     }
 
 
-    // public function profile ($id){
-    //     $userManager = new UserManager();
-    //     //afficher informations personnelles 
-    //     //afficher ses 5 dernier topics du plus order by desc
-    //     $user = Session::getUser();
-    //     var_dump($user);
-    //     $pseudo = $user->getNickname();
-    //     $email = $user->getEmail(); 
-    //     $inscription = $user->getCreationDate();
-    
-    //     header("Location: index.php?ctrl=security&action=profile=$id");
-
-    // }
+ 
     public function profile() {
     
     
-        $userManager = new UserManager();
+        $topicManager = new TopicManager();
     
         // Récupérer les informations de l'utilisateur connecté
         $user = Session::getUser();
         $userId = $user->getId();
   
             
-            
-   
-        
         // Afficher les informations personnelles de l'utilisateur
         $pseudo = $user->getNickname();
         $email = $user->getEmail();
         $inscription = $user->getCreationDate(); 
-    
+        // var_dump($pseudo);
         // Récupérer les 5 derniers topics de l'utilisateur, triés par date de création décroissante
-    //     $topics[] = $userManager->getLastFiveTopics($userId);
-    // var_dump($topics);die;
-        // Inclure la vue du profil utilisateur
+        $topics = $topicManager->getLastFiveTopics($userId);
+        // var_dump($topics);die;
+        // envoyer les informations vers lavue 
+
+        return [
+            "view" =>VIEW_DIR."forum/profil.php",
+            "meta_description" => "Liste des topics de ".$pseudo,
+            "data" => [
+                "topics" => $topics
+               
+            ]
+            ];
       
-        header("Location: index.php?ctrl=security&action=profile");
     }
     
 
