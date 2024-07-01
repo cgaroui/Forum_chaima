@@ -57,7 +57,7 @@ class TopicManager extends Manager{
                 WHERE user_id = :user_id 
                 ORDER BY creationDate DESC LIMIT 5";
 
-        // return DAO::select($sql, ['user_id' => $userId]);
+       
          // Utilisation de getMultipleResults pour transformer les résultats en objets Topic
          return $this->getMultipleResults(
             DAO::select($sql, ['user_id' => $userId]), 
