@@ -14,9 +14,8 @@ body {
 #mainpage {
     flex: 1;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    background-color:#e7c6ff
+    flex-direction: column;
+    background-color:#f6ebfd
 }
 
 
@@ -36,7 +35,9 @@ footer {
 }
 
 h1 {
+    margin-top: 5px;
     color: rgb(0, 122, 156);
+    text-align: center;
 }
 
 .nav-bar {
@@ -118,9 +119,25 @@ h1 {
     border-radius: 5px;
 }
 
-.tendances-topics{
-   
 
+.formulaire {
+  
+    background-color: #551a8b;
+    opacity:0.6 ;
+    padding: 50px;
+    border: 1px solid ;
+    border-radius: 5px;
+    width: 50%;
+    margin: 30% auto;color: rgb(255, 255, 255);
 }
 
-
+.btn{
+    margin-top: 2rem;
+    margin-left: 70%;
+    width: 100px;
+    border-radius: 5px;
+    padding: 2px 0px;
+    background-color: rgb(0, 122, 156);;
+    color: rgb(255, 255, 255);
+}
+ 

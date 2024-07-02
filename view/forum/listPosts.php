@@ -30,7 +30,8 @@ if($topic->getClosed() == 0 ){?>
     <input type="submit" name = "submit" value="envoyer">
    
 <?php
+
  }else {
     echo "ce topic est fermé vous ne pouvez pas rajouter de post!";
- }
+}
 

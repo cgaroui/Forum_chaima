@@ -20,7 +20,7 @@ $role = App\Session::getUser()->getRole();
 
 <div class="categorie">
     <a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a>
-     par <?= $topic->getUser() ?>
+     par <?= $topic->getUser() ?><br>
       le <?= $topic->getCreationDate()->format("d/m/y  H:i") ?>
      
     <?php
