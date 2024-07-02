@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `topic_id1` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`) ON DELETE CASCADE,
   CONSTRAINT `user_id1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forum_chaima.post : ~18 rows (environ)
+-- Listage des données de la table forum_chaima.post : ~24 rows (environ)
 INSERT INTO `post` (`id_post`, `text`, `creationDate`, `user_id`, `topic_id`) VALUES
 	(1, 'blabla blablaalalalalallal', '2024-06-17 14:36:29', 4, 6),
 	(2, 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit ad ipsum, explicabo voluptatum earum a sequi accusamus rem, totam dolore, minus illo tenetur culpa quidem eaque ipsa quo? Impedit, mollitia?', '2024-06-17 14:38:47', 5, 6),
@@ -65,7 +65,14 @@ INSERT INTO `post` (`id_post`, `text`, `creationDate`, `user_id`, `topic_id`) VA
 	(25, 'zzzzzzzzzzzzzzzzzzzzzzz', '2024-06-28 13:49:14', 8, 19),
 	(30, 'QSRTJSJS', '2024-06-28 14:01:59', 6, 21),
 	(32, 'djetjz', '2024-06-28 14:24:08', 6, 7),
-	(34, 'jnjujbiu', '2024-06-28 15:28:24', 8, 19);
+	(34, 'jnjujbiu', '2024-06-28 15:28:24', 8, 19),
+	(35, 'bonjour tout le monde\r\n', '2024-07-01 14:50:02', 6, 19),
+	(36, 'nous sommes lundi \r\n', '2024-07-01 14:50:48', 6, 7),
+	(37, 'zDFBdeqb', '2024-07-01 15:42:50', 9, 22),
+	(38, 'bvqsrtzs', '2024-07-01 15:43:04', 9, 23),
+	(39, 'aregbaae', '2024-07-01 15:43:31', 9, 24),
+	(40, 'coucou hira\r\n', '2024-07-02 15:08:42', 6, 23),
+	(41, 'des pommes \r\n', '2024-07-02 16:00:44', 6, 10);
 
 -- Listage de la structure de table forum_chaima. topic
 CREATE TABLE IF NOT EXISTS `topic` (
@@ -80,9 +87,9 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `category_id` (`category_id`),
   CONSTRAINT `category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`) ON DELETE SET NULL,
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forum_chaima.topic : ~16 rows (environ)
+-- Listage des données de la table forum_chaima.topic : ~19 rows (environ)
 INSERT INTO `topic` (`id_topic`, `title`, `closed`, `user_id`, `category_id`, `creationDate`) VALUES
 	(6, 'comment faire un fondant au chocolat ', b'1', 3, 5, '2024-06-17 14:34:34'),
 	(7, ' RGPD ', b'0', 5, 4, '2024-06-17 14:35:24'),
@@ -99,7 +106,10 @@ INSERT INTO `topic` (`id_topic`, `title`, `closed`, `user_id`, `category_id`, `c
 	(18, 'foot', b'1', 8, 6, '2024-06-27 16:43:04'),
 	(19, 'macarons', b'0', 6, 5, '2024-06-27 16:47:11'),
 	(20, 'football', b'1', 8, 6, '2024-06-28 08:49:13'),
-	(21, 'SJQJZS', b'0', 6, 6, '2024-06-28 14:01:41');
+	(21, 'SJQJZS', b'0', 6, 6, '2024-06-28 14:01:41'),
+	(22, 'princesse treatement', b'0', 9, 5, '2024-07-01 15:42:50'),
+	(23, 'hira', b'0', 9, 5, '2024-07-01 15:43:04'),
+	(24, 'make up', b'0', 9, 5, '2024-07-01 15:43:31');
 
 -- Listage de la structure de table forum_chaima. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -110,16 +120,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   `creationDate` datetime DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forum_chaima.user : ~6 rows (environ)
+-- Listage des données de la table forum_chaima.user : ~5 rows (environ)
 INSERT INTO `user` (`id_user`, `nickName`, `password`, `role`, `creationDate`, `email`) VALUES
 	(3, 'chaima', '11111', 'user', '2024-06-27 08:59:07', 'chaima@exemple.fr'),
 	(4, 'asma ', 'aaaaa', 'user', '2024-06-27 08:59:07', 'asma@exemple.fr'),
 	(5, 'idriss', 'aaaaa', 'user', '2024-06-27 08:59:12', 'idriss@exemple.fr'),
 	(6, 'micka', '$2y$10$69G5EBCZQWOorxEvgFXSG.2IXB1VDDktT19NuvPO18vYddVetfTd.', 'user', '2024-06-27 10:35:33', 'mickael2@exemple.com'),
 	(7, 'ikram', '$2y$10$P13Puz9mzBmPJJTTRseID.nvF.yXHnMqcPnJy4cDKaFqKcwKMvdxO', 'user', '2024-06-27 10:39:50', 'ikram@exemple.com'),
-	(8, 'yas', '$2y$10$DX2zd0oWy05tjP4z2L6cUuX4tLq0fi09cjbaflF7lLGOJLOos9crW', 'admin', '2024-06-27 16:40:45', 'yass@exemple.fr');
+	(8, 'yas', '$2y$10$DX2zd0oWy05tjP4z2L6cUuX4tLq0fi09cjbaflF7lLGOJLOos9crW', 'admin', '2024-06-27 16:40:45', 'yass@exemple.fr'),
+	(9, 'kew', '$2y$10$fdEG.MPlxr2gkiBB9WpXieO/p0pNvAd9QTAbIA786kR8kDvdxKpTe', 'user', '2024-07-01 15:41:35', 'kew@exemple.com');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
