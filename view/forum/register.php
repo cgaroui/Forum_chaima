@@ -1,4 +1,5 @@
 <h1>FORMULAIRE D'INSCRIPTION</h1>
+
     <form class="formulaire" action="index.php?ctrl=security&action=register" method="POST">
         <label for="nikname">nom : </label>
         <input type="text" id="nickname" name="nickname" ><br>

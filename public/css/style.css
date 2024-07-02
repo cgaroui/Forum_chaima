@@ -87,12 +87,13 @@ h1 {
     padding: 5px 10px;
 }
 
-#categories{
+.wrap{
     display: flex;
+    align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: center;
+    align-content: center;
 }
 
 .categorie{

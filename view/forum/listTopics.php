@@ -6,7 +6,7 @@
 <h1>Liste des topics</h1>
 
 
-<div></div>
+<div class="wrap">
 
 <?php
 
@@ -38,7 +38,7 @@ $role = App\Session::getUser()->getRole();
 
 </div>
 <?php } ?>
-
+</div>
 <form action="index.php?ctrl=forum&action=addTopic&id=<?=$category->getId()?>" method="POST">
     <label for="title">Titre Topic: </label>
     <input type="text" name="title" required><br>
