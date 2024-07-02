@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire d'inscription </title>
-</head>
-<body>
-    <form action="index.php?ctrl=security&action=register" method="POST">
+
+    <form class="formulaire" action="index.php?ctrl=security&action=register" method="POST">
         <label for="nikname">nom : </label>
         <input type="text" id="nickname" name="nickname" ><br>
         
@@ -22,6 +15,3 @@
         <button type="submit" name="submit">S'inscrire</button><br>
 
     </form>
-    
-</body>
-</html>

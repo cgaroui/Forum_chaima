@@ -5,11 +5,10 @@
 
 <h1>Liste des topics</h1>
 
+
+<div></div>
+
 <?php
-
-
-
-
 
 foreach($topics as $topic ){ 
 
@@ -19,7 +18,7 @@ $role = App\Session::getUser()->getRole();
 // var_dump($role);die;
 ?> 
 
-<p>
+<div class="categorie">
     <a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a>
      par <?= $topic->getUser() ?>
       le <?= $topic->getCreationDate()->format("d/m/y  H:i") ?>
@@ -36,8 +35,8 @@ $role = App\Session::getUser()->getRole();
             
         }
     ?>
-</p>
 
+</div>
 <?php } ?>
 
 <form action="index.php?ctrl=forum&action=addTopic&id=<?=$category->getId()?>" method="POST">
