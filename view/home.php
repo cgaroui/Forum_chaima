@@ -1,3 +1,4 @@
+<header>
 <div class="home">
     <div class="text-acceuil">
     <h1>BIENVENUE SUR LE FORUM</h1>
@@ -8,6 +9,7 @@
         <a href="index.php?ctrl=security&action=register" class="btn-accueil">S'inscrire</a>
     </div>
 </div>
+</header>
     <div class="tendance-topics">
 
     </div>

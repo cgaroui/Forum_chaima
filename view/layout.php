@@ -37,13 +37,13 @@
                                 <a href="index.php?ctrl=forum&action=index">Liste des catégories</a>
                                 </div><?php
                             }
-                        ?>
-                        
+                        ?>  
                     </nav>
                 </header>
                 
                 <main id="forum">
-                    <?= $page ?>
+                    <div class="corps-page">
+                    <?= $page ?></div>
                 </main>
             </div>
             <footer>
