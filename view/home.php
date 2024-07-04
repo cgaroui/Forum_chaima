@@ -11,9 +11,9 @@
 </div>
 </header>
     <div class="tendance-topics">
-
+        <!-- implémenter d'abord la requete qui récupere en bdd liste des topics avc plus de messages  -->
     </div>
-    <div id="categories">
+    <div class="wrap">
         <div class="categorie"><a href="index.php?ctrl=forum&action=listTopicsByCategory&id=5" >Cuisine</a></div>
         <div  class="categorie"><a href="index.php?ctrl=forum&action=listTopicsByCategory&id=4" >Developpement Web</a></div>
         <div class="categorie"><a href="index.php?ctrl=forum&action=listTopicsByCategory&id=6" >Sport</a></div>

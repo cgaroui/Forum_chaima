@@ -45,6 +45,11 @@ h1 {
     text-align: center;
 }
 
+h2{
+    font-size: 20px;
+    margin-bottom: 2%;
+}
+
 .nav-bar {
     background-color: #c8b6ff;
    padding-bottom: 10px;
@@ -212,7 +217,7 @@ h1 {
     width: 200px;
     height: 200px;
     margin: 50px 20px  50px 0px;
-    margin-bottom: ;
+   border-radius: 50%;
 }
 
 .page-profil{
@@ -221,6 +226,8 @@ h1 {
 
 .profil ul {
     list-style: none;
+    font-size: 20px;
+    
 
 }
 .profil{
@@ -228,4 +235,8 @@ h1 {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+}
+
+.topics-profil li{
+    margin-left: 3rem;
 }
