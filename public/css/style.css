@@ -16,19 +16,15 @@ body {
     display: flex;
     flex-direction: column;
     background-color:#f6ebfd;
- 
 }
 
-#forum{
+#forum {
     /* padding : 0 10% ; */
 }
- 
 
-
-footer { 
-
-    background-color:  #c8b6ff; 
-    text-align:center;
+footer {
+    background-color:  #c8b6ff;
+    text-align: center;
     font-size: small;
     height: 170px;
     width: 100%;
@@ -36,7 +32,6 @@ footer {
     justify-content: center; /* Centre horizontalement */
     align-items: center;     /* Centre verticalement */
     height: 170px;           /* Hauteur fixe pour le footer */
-  
 }
 
 h1 {
@@ -45,14 +40,14 @@ h1 {
     text-align: center;
 }
 
-h2{
+h2 {
     font-size: 20px;
     margin-bottom: 2%;
 }
 
 .nav-bar {
     background-color: #c8b6ff;
-   padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 #nav-right {
@@ -61,43 +56,43 @@ h2{
     flex-direction: row;
 }
 
-#nav-right a{
+#nav-right a {
     margin-right: 1rem;
 }
 
-
-.btns-accueil{
+.btns-accueil {
     display: flex;
     margin: 2px 0px 20px 70px;
     flex-direction: column;
     align-items: flex-end;
 }
 
-.btn-accueil{
+.btn-accueil {
     /* padding:  0px 10px; */
     margin: 5px;
-    padding:3px;
+    padding: 3px;
     width: 100px;
     height: 15px;
-    background-color:rgb(0, 122, 156);
+    background-color: rgb(0, 122, 156);
     border-radius: 10px;
-    font-size: 10px; 
+    font-size: 10px;
     text-align: center;
     color: #e7c6ff;
 }
-    
-.home{
+
+.home {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    background-color:#e7c6ff  
+    background-color: #e7c6ff;
 }
-.text-acceuil{
+
+.text-acceuil {
     margin: 10px;
     padding: 5px 10px;
 }
 
-.wrap{
+.wrap {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -106,50 +101,48 @@ h2{
     align-content: center;
 }
 
-.categorie{
+.categorie {
     margin: 50px;
-    padding:30px;
+    padding: 30px;
     width: 150px;
     height: 100px;
     background-color: #c8b6ff;
     border-radius: 5px;
 }
 
-.categorie a{
+.categorie a {
     display: flex;
     justify-content: center; /* Centre horizontalement */
-    align-items: center;  
+    align-items: center;
 }
 
-.topic{
+.topic {
     margin: 50px;
-    padding:30px;
+    padding: 30px;
     width: 150px;
     height: 100px;
     background-color: #c8b6ff;
     border-radius: 5px;
 }
 
-
 .formulaire {
-  
     background-color: #551a8b;
-    opacity:0.6 ;
+    opacity: 0.6;
     padding: 50px;
-    border: 1px solid ;
+    border: 1px solid;
     border-radius: 5px;
     width: 50%;
     margin: 30% auto;
     color: rgb(255, 255, 255);
 }
 
-.btn{
+.btn {
     margin-top: 2rem;
     margin-left: 70%;
     width: 100px;
     border-radius: 5px;
     padding: 2px 0px;
-    background-color: rgb(0, 122, 156);;
+    background-color: rgb(0, 122, 156);
     color: rgb(255, 255, 255);
 }
 
@@ -164,9 +157,13 @@ h2{
 
 .un-post {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
     margin: 5px;
+    padding: 10px;
+    background-color: #c8b6ff;
+    border-radius: 5px;
+    overflow: hidden; /* Empêche le contenu de dépasser */
 }
 
 .post-profil {
@@ -185,21 +182,26 @@ h2{
 }
 
 .contenu-post {
-   flex: 0.9;  /* Prendre tout l'espace disponible */
+    flex: 0.9; /* Prendre tout l'espace disponible */
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
 }
 
+
+
 .text-post {
-    width: 100%;
-    margin: 1rem 0;
-    padding: 10px;
+    margin: 0; /* Réinitialise les marges pour éviter tout débordement */
+    padding: 5px; /* Réinitialise le padding pour éviter tout débordement */
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre pour un meilleur contraste */
-}
+    word-wrap: break-word; /* Casse le texte long pour éviter le débordement */
 
+    /* pour s'assurer que la largeur ne dépasse pas son parent */
+    max-width: 100%; /* Ne dépasse pas la largeur du parent */
+    overflow: hidden; /* Cache le débordement du texte */
+}
 .supp-post {
     margin-top: 10px; /* Espace au-dessus du lien de suppression */
 }
@@ -209,25 +211,158 @@ h2{
     margin: 10%;
 }
 
-
-
-.page-profil{
+.page-profil {
     margin: 10%;
 }
 
 .profil ul {
     list-style: none;
     font-size: 20px;
-    
-
 }
-.profil{
+
+.profil img {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    border-radius: 50%;
+}
+
+.profil {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
 }
 
-.topics-profil li{
+.topics-profil li {
     margin-left: 3rem;
 }
+
+/* Media Queries */
+
+/* Tablettes */
+@media (max-width: 768px) {
+    .tous-post {
+        width: 90%;
+        margin: 1% 5%;
+    }
+
+    .post-profil {
+        margin-right: 15px;
+    }
+
+    .post-profil img {
+        height: 80px;
+        width: 80px;
+    }
+
+    .text-post {
+        margin: 1rem 0;
+        padding: 10px; /* Assurez-vous que le padding est toujours présent */
+        word-wrap: break-word; /* Assurez-vous que le texte ne dépasse pas */
+    }
+
+    .ajout-post {
+        margin: 5%;
+    }
+
+    .wrap {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .categorie,
+    .topic {
+        margin: 20px;
+        width: 200px;
+        height: 150px;
+    }
+
+    .formulaire {
+        width: 80%;
+        margin: 10% auto;
+    }
+
+    .btn {
+        margin-left: 50%;
+        width: 120px;
+    }
+
+    .profil {
+        flex-direction: column;
+    }
+
+    .profil img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Smartphones */
+@media (max-width: 768px) {
+    .tous-post {
+        width: 95%;
+        margin: 1% 2.5%;
+    }
+
+    .un-post {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .post-profil {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .post-profil img {
+        height: 60px;
+        width: 60px;
+    }
+
+    .contenu-post {
+        align-items: flex-start;
+    }
+
+    .text-post {
+        padding: 8px; /* Ajustement du padding pour éviter le débordement */
+    }
+
+    .ajout-post {
+        margin: 5%;
+    }
+
+    .wrap {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .categorie,
+    .topic {
+        margin: 10px;
+        width: 100%;
+        height: auto;
+    }
+
+    .formulaire {
+        width: 95%;
+        margin: 5% auto;
+    }
+
+    .btn {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .profil {
+        flex-direction: column;
+    }
+
+    .profil img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+
