@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Roboto', sans-serif; 
 }
 
 #mainpage {
@@ -157,8 +158,9 @@ h2 {
 
 .un-post {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap; /* Permettre le passage à la ligne en cas de dépassement */
+    align-items: flex-start; /* Aligner les éléments en haut de leur conteneur */
     margin: 5px;
     padding: 10px;
     background-color: #c8b6ff;
@@ -167,12 +169,25 @@ h2 {
 }
 
 .post-profil {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3px;
-    margin-right: 20px; /* Espace entre l'image de profil et le texte */
+    flex: 0 0 auto; /* Ne pas agrandir, ne pas réduire, taille initiale */
+    margin-right: 10px; /* Espace entre l'image de profil et le texte */
 }
+
+.contenu-post {
+    flex: 1 1 auto; /* Agrandir, réduire, taille initiale */
+    min-width: 0; /* Permettre le rétrécissement */
+}
+
+.text-post {
+    width: 80%; /* La largeur est de 100% du conteneur parent */
+    margin: 0; /* Réinitialiser les marges */
+    padding: 10px; /* Ajouter un padding */
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajouter une ombre */
+    word-wrap: break-word; /* Casser le texte long */
+}
+
 
 .post-profil img {
     height: 100px;
@@ -180,36 +195,99 @@ h2 {
     object-fit: cover;
     border-radius: 50%; /* Image ronde */
 }
-
-.contenu-post {
-    flex: 0.9; /* Prendre tout l'espace disponible */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-
-
-.text-post {
-    margin: 0; /* Réinitialise les marges pour éviter tout débordement */
-    padding: 5px; /* Réinitialise le padding pour éviter tout débordement */
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre pour un meilleur contraste */
-    word-wrap: break-word; /* Casse le texte long pour éviter le débordement */
-
-    /* pour s'assurer que la largeur ne dépasse pas son parent */
-    max-width: 100%; /* Ne dépasse pas la largeur du parent */
-    overflow: hidden; /* Cache le débordement du texte */
-}
 .supp-post {
     margin-top: 10px; /* Espace au-dessus du lien de suppression */
 }
 
+/* Styles pour l'ajout de post */
+
 .ajout-post {
-    width: auto;
-    margin: 10%;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.ajout-post form {
+    display: grid;
+    gap: 10px;
+}
+
+.ajout-post textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    resize: vertical; /* Permet à l'utilisateur de redimensionner la zone de texte verticalement */
+}
+
+.ajout-post input[type="submit"] {
+    background-color: #007a9c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.ajout-post input[type="submit"]:hover {
+    background-color: #005d73;
+}
+
+
+/* Styles pour le formulaire et les inputs */
+
+.ajout-topic {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ajout-topic form {
+    display: grid;
+    gap: 10px;
+}
+
+.ajout-topic label {
+    font-weight: bold;
+}
+
+.ajout-topic input[type="text"],
+.ajout-topic textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.ajout-topic textarea {
+    resize: vertical; /* Permet à l'utilisateur de redimensionner la zone de texte verticalement */
+}
+
+.ajout-topic input[type="submit"] {
+    background-color: #007a9c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.ajout-topic input[type="submit"]:hover {
+    background-color: #005d73;
+}
+
 
 .page-profil {
     margin: 10%;
