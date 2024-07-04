@@ -153,72 +153,63 @@ h2{
     color: rgb(255, 255, 255);
 }
 
-.tous-post{
+.tous-post {
     width: 80%;
     height: auto;
     padding: 5px;
     background-color: #c8b6ff;
-   border-radius: 5px;
+    border-radius: 5px;
     margin: 1% 10%;
 }
 
-.un-post{
+.un-post {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
+    align-items: flex-start;
     margin: 5px;
 }
-
-.contenu-post{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end; 
-}
-
-.text-post{
-    width: 80%;
-    margin: 1rem 5rem;
-    padding: 5px;
-    background-color: #fff;
-}
-
-
 
 .post-profil {
     display: flex;
     flex-direction: column;
-    align-content: center;
-    justify-content: center;
     align-items: center;
     padding: 3px;
+    margin-right: 20px; /* Espace entre l'image de profil et le texte */
 }
 
-
-
-.post-profil img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 50%;     /*image ronde*/
-}
-.post-img{
-    width: 100px;
+.post-profil img {
     height: 100px;
-    border-radius: 50%;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%; /* Image ronde */
 }
 
-.ajout-post{
+.contenu-post {
+   flex: 0.9;  /* Prendre tout l'espace disponible */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+
+.text-post {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre pour un meilleur contraste */
+}
+
+.supp-post {
+    margin-top: 10px; /* Espace au-dessus du lien de suppression */
+}
+
+.ajout-post {
     width: auto;
     margin: 10%;
 }
 
-.profil img{
-    width: 200px;
-    height: 200px;
-    margin: 50px 20px  50px 0px;
-   border-radius: 50%;
-}
+
 
 .page-profil{
     margin: 10%;
